@@ -144,7 +144,7 @@ export async function install(scene = canvas.scene) {
           name: shop.name, type: 'loot', img: token.texture.src,
           system: {lootSheetType: 'Merchant', details: {description: html}},
           ownership: {default: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED},
-          prototypeToken: COPY(token), flags: {world: {sandpointShop: {id: shop.id, version: '0.1.1'}}}
+          prototypeToken: COPY(token), flags: {world: {sandpointShop: {id: shop.id, version: '0.1.2'}}}
         },
         tokenOverrides: token,
         itemPileFlags: {
@@ -169,7 +169,7 @@ export async function install(scene = canvas.scene) {
       await scene.createEmbeddedDocuments('Token', [document.toObject()]);
     }
   }
-  await scene.setFlag('world', 'sandpointShops', {version: '0.1.1', shops: shops.length});
+  await scene.setFlag('world', 'sandpointShops', {version: '0.1.2', shops: shops.length});
   await scene.update({navigation: true});
   const report = shops.map(s => {
     const a = existing.get(s.id);
@@ -180,11 +180,11 @@ export async function install(scene = canvas.scene) {
   return report;
 }
 
-if (game.modules.get(ID)?.active) {
-  Hooks.once('ready', async () => {
-    game.modules.get(ID).api = {install};
+Hooks.once('ready', async () => {
+    const module = game.modules.get(ID);
+    if (!module?.active) return;
+    module.api = {install};
     if (!game.user.isGM || game.macros.some(m => m.getFlag(ID, 'installer'))) return;
     await Macro.create({name:'Магазины Сэндпойнта — разместить на карте',type:'script',img:`${ROOT}/icons/shop-26.svg`,
       command:`await (await import('/${ROOT}/scripts/shops.mjs')).install();`,flags:{[ID]:{installer:true}}});
-  });
-}
+});
