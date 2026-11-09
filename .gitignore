@@ -1,0 +1,6 @@
+.DS_Store
+context.json
+*-report.json
+scene-before-*.json
+purchase-*.json
+*.zip

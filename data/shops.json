@@ -1,0 +1,1754 @@
+{
+  "settlementLevel": 4,
+  "shops": [
+    {
+      "id": "1",
+      "name": "Собор Сэндпойнта",
+      "kind": "temple",
+      "anchor": "GFOVRtyxOzzWW3bI",
+      "stock": [
+        {
+          "slug": "religious-symbol-wooden",
+          "id": "plplsXJsqrdqNQVI",
+          "quantity": 12
+        },
+        {
+          "slug": "religious-symbol-silver",
+          "id": "upzjwQ96cZG0Xlmx",
+          "quantity": 5
+        },
+        {
+          "slug": "religious-text",
+          "id": "z1okOYtNVnpBNj9F",
+          "quantity": 5
+        },
+        {
+          "slug": "holy-water",
+          "id": "z9T4c1hXwOotsMCp",
+          "quantity": 6
+        },
+        {
+          "slug": "healing-potion-minor",
+          "id": "2RuepCemJhrpKKao",
+          "quantity": 4
+        },
+        {
+          "slug": "healing-potion-lesser",
+          "id": "e0vSAQfxhHauiAoD",
+          "quantity": 2
+        }
+      ],
+      "description": "Религиозные принадлежности и сакральные свитки. О сотворении заклинаний договоритесь с ведущим.",
+      "custom": [],
+      "scrolls": [
+        {
+          "slug": "heal",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "heal",
+          "rank": 2,
+          "quantity": 2
+        },
+        {
+          "slug": "protection",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "sanctuary",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "cleanse-affliction",
+          "rank": 2,
+          "quantity": 1
+        }
+      ],
+      "service": false,
+      "discount": 1,
+      "hidden": false,
+      "enchantedWeapons": [
+        "crossbow",
+        "starknife",
+        "longbow",
+        "trident",
+        "scimitar",
+        "glaive"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Путь на север",
+      "kind": "map",
+      "anchor": "NbpspfxC5BHM74rN",
+      "stock": [
+        {
+          "slug": "compass",
+          "id": "wob6DB1FFdWs0mbp",
+          "quantity": 4
+        },
+        {
+          "slug": "compass-lensatic",
+          "id": "xVhd8NF9KQ6VWfMu",
+          "quantity": 1
+        },
+        {
+          "slug": "writing-set",
+          "id": "QJb8S927Yj81EgHH",
+          "quantity": 4
+        },
+        {
+          "slug": "writing-set-extra-ink-and-paper",
+          "id": "3yLu12TCwN8utY0u",
+          "quantity": 8
+        },
+        {
+          "slug": "paint-set",
+          "id": "jLVS6JezrxJ8G94C",
+          "quantity": 2
+        }
+      ],
+      "description": "Карты и принадлежности для картографии. Везнутт Парух также предлагает услуги заклинателя по договорённости.",
+      "custom": [
+        {
+          "name": "Карта Сэндпойнта",
+          "price": {
+            "cp": 50
+          },
+          "description": "Обычная карта городских улиц и основных зданий.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        },
+        {
+          "name": "Карта Забытого Побережья",
+          "price": {
+            "gp": 5
+          },
+          "description": "Региональная карта дорог и поселений.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        },
+        {
+          "name": "Сувенирная карта сокровищ",
+          "price": {
+            "cp": 50
+          },
+          "description": "Сувенирная карта. Не указывает на настоящие сокровища.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        }
+      ],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "5",
+      "name": "Кольца и прочее",
+      "kind": "jewelry",
+      "anchor": "RDggXNtqmSTKLL7x",
+      "stock": [
+        {
+          "slug": "engraved-copper-ring",
+          "id": "Mm3xgz27Q94wZhti",
+          "quantity": 3
+        }
+      ],
+      "description": "Мавер Кеск торгует украшениями и небольшими произведениями искусства. Ссуды обсуждаются с ведущим.",
+      "custom": [
+        {
+          "name": "Серебряная серьга",
+          "price": {
+            "gp": 2
+          },
+          "description": "Обычное серебряное украшение без магических свойств.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        },
+        {
+          "name": "Украшение с полудрагоценным камнем",
+          "price": {
+            "gp": 10
+          },
+          "description": "Небольшое декоративное украшение без магических свойств.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        },
+        {
+          "name": "Расписная статуэтка",
+          "price": {
+            "cp": 50
+          },
+          "description": "Небольшое произведение местного ремесла.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        }
+      ],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "9",
+      "name": "Слесарная",
+      "kind": "tools",
+      "anchor": "93ThUDZgO7uxClKl",
+      "stock": [
+        {
+          "slug": "lock-poor",
+          "id": "PBlxTrEyr3qXFBqq",
+          "quantity": 6
+        },
+        {
+          "slug": "lock-simple",
+          "id": "JZXCTwoIWoGKjMX6",
+          "quantity": 5
+        },
+        {
+          "slug": "lock-average",
+          "id": "q2TYVAMaK6UfenbV",
+          "quantity": 2
+        },
+        {
+          "slug": "repair-toolkit",
+          "id": "vLGDUFrg4yGzpTQX",
+          "quantity": 3
+        },
+        {
+          "slug": "artisans-toolkit",
+          "id": "y34yjumCFakrbtdw",
+          "quantity": 2
+        }
+      ],
+      "description": "Волиокер Брискалберд продаёт замки. Изготовление ключей и ремонт замков обсуждаются с ведущим.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "12",
+      "name": "Оружейная Савы",
+      "kind": "weapons",
+      "anchor": "cxh7EWWQ93Y7BNMF",
+      "stock": [
+        {
+          "slug": "dagger",
+          "id": "rQWaJhI5Bko5x14Z",
+          "quantity": 3
+        },
+        {
+          "slug": "shortsword",
+          "id": "7tKkkF8eZ4iCLJtp",
+          "quantity": 3
+        },
+        {
+          "slug": "longsword",
+          "id": "LJdbVTOZog39EEbi",
+          "quantity": 3
+        },
+        {
+          "slug": "greatsword",
+          "id": "UX71GkWBL9g41VwM",
+          "quantity": 3
+        },
+        {
+          "slug": "rapier",
+          "id": "tH5GirEy7YB3ZgCk",
+          "quantity": 3
+        },
+        {
+          "slug": "scimitar",
+          "id": "grmaV4GdoGD7sKbn",
+          "quantity": 3
+        },
+        {
+          "slug": "falchion",
+          "id": "XGtIUZ4ZNKuFx1uL",
+          "quantity": 3
+        },
+        {
+          "slug": "battle-axe",
+          "id": "War0uyLBx1jA0Ge7",
+          "quantity": 3
+        },
+        {
+          "slug": "greataxe",
+          "id": "8COlYvHe6hKCXY8x",
+          "quantity": 3
+        },
+        {
+          "slug": "light-hammer",
+          "id": "FibwLZ12EIEwLGhw",
+          "quantity": 3
+        },
+        {
+          "slug": "warhammer",
+          "id": "rXt4629QSg7KDTgJ",
+          "quantity": 3
+        },
+        {
+          "slug": "mace",
+          "id": "9iDqOLNFKxiTcFKE",
+          "quantity": 3
+        },
+        {
+          "slug": "morningstar",
+          "id": "5fu6dCtqhdBnHNqh",
+          "quantity": 3
+        },
+        {
+          "slug": "flail",
+          "id": "t5FbyZtRL4qV0V7k",
+          "quantity": 3
+        },
+        {
+          "slug": "staff",
+          "id": "FVjTuBCIefAgloUU",
+          "quantity": 3
+        },
+        {
+          "slug": "spear",
+          "id": "tOhoGvmCMw4JpWcS",
+          "quantity": 3
+        },
+        {
+          "slug": "longspear",
+          "id": "aXuJh4i8HqSu6NYV",
+          "quantity": 3
+        },
+        {
+          "slug": "trident",
+          "id": "FJrsDoaIXksVjld9",
+          "quantity": 3
+        },
+        {
+          "slug": "glaive",
+          "id": "vlnzTSsRmWeSkt9O",
+          "quantity": 3
+        },
+        {
+          "slug": "halberd",
+          "id": "dgWxsYm0DWHb27h6",
+          "quantity": 3
+        },
+        {
+          "slug": "shortbow",
+          "id": "hIgqLgH3YcLZBeoT",
+          "quantity": 3
+        },
+        {
+          "slug": "longbow",
+          "id": "MVAWttmT0QDa7LsV",
+          "quantity": 3
+        },
+        {
+          "slug": "crossbow",
+          "id": "62nnVQvGhoVLLl2K",
+          "quantity": 3
+        },
+        {
+          "slug": "hand-crossbow",
+          "id": "XyA6PKV46aNlLXOd",
+          "quantity": 3
+        },
+        {
+          "slug": "heavy-crossbow",
+          "id": "giO4LwIKGzJZoaxa",
+          "quantity": 3
+        },
+        {
+          "slug": "starknife",
+          "id": "Mv2I6M70bagbaBPn",
+          "quantity": 3
+        },
+        {
+          "slug": "sling",
+          "id": "UCH4myuFnokGv0vF",
+          "quantity": 3
+        },
+        {
+          "slug": "club",
+          "id": "c58wczIzH2gzeXQL",
+          "quantity": 3
+        },
+        {
+          "slug": "javelin",
+          "id": "JNt7GmLCCVz5BiEI",
+          "quantity": 3
+        },
+        {
+          "slug": "padded-armor",
+          "id": "zBYEU9E7034ENCmh",
+          "quantity": 3
+        },
+        {
+          "slug": "leather-armor",
+          "id": "4tIVTg9wj56RrveA",
+          "quantity": 3
+        },
+        {
+          "slug": "studded-leather-armor",
+          "id": "ewQZ0VeL38v3qFnN",
+          "quantity": 3
+        },
+        {
+          "slug": "hide-armor",
+          "id": "AnwzlOs0njF9Jqnr",
+          "quantity": 3
+        },
+        {
+          "slug": "chain-shirt",
+          "id": "MPcM4Wt6KmWE2kGL",
+          "quantity": 3
+        },
+        {
+          "slug": "scale-mail",
+          "id": "YMQr577asquZIP65",
+          "quantity": 3
+        },
+        {
+          "slug": "chain-mail",
+          "id": "Kf4eJEXnFPuAsseP",
+          "quantity": 3
+        },
+        {
+          "slug": "breastplate",
+          "id": "r0ifJfoz8aqf0mwk",
+          "quantity": 3
+        },
+        {
+          "slug": "splint-mail",
+          "id": "6AhDKX1dwRwFpQsU",
+          "quantity": 3
+        },
+        {
+          "slug": "half-plate",
+          "id": "pRoikbRo5HFW6YUB",
+          "quantity": 3
+        },
+        {
+          "slug": "full-plate",
+          "id": "Gq1cZWSKOtJhKd2p",
+          "quantity": 3
+        },
+        {
+          "slug": "explorers-clothing",
+          "id": "dDIPA1WE9ESF67EB",
+          "quantity": 3
+        },
+        {
+          "slug": "buckler",
+          "id": "1k3AsSW7lpU0kEpY",
+          "quantity": 3
+        },
+        {
+          "slug": "wooden-shield",
+          "id": "ezVp13Uw8cWW08Da",
+          "quantity": 3
+        },
+        {
+          "slug": "steel-shield",
+          "id": "Yr9yCuJiAlFh3QEB",
+          "quantity": 3
+        },
+        {
+          "slug": "tower-shield",
+          "id": "ltundBNFAnP7bgPr",
+          "quantity": 3
+        },
+        {
+          "slug": "arrows",
+          "id": "w2ENw2VMPcsbif8g",
+          "quantity": 100
+        },
+        {
+          "slug": "bolts",
+          "id": "AITVZmakiu3RgfKo",
+          "quantity": 100
+        },
+        {
+          "slug": "sling-bullets",
+          "id": "MKSeXwUm56c15MZa",
+          "quantity": 100
+        },
+        {
+          "slug": "weapon-potency-1",
+          "id": "DKWuJb2rSgiotOG7",
+          "quantity": 2
+        },
+        {
+          "slug": "striking",
+          "id": "DxCuJKynlnMQZHgp",
+          "quantity": 1
+        },
+        {
+          "slug": "repair-toolkit",
+          "id": "vLGDUFrg4yGzpTQX",
+          "quantity": 3
+        }
+      ],
+      "description": "Оружие, доспехи, щиты, боеприпасы и руны. Для переноса руны на предмет договоритесь с ведущим.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "14",
+      "name": "Кожевня Рованки",
+      "kind": "leather",
+      "anchor": "H5Ei5lLZ8ZF0myvN",
+      "stock": [
+        {
+          "slug": "leather-armor",
+          "id": "4tIVTg9wj56RrveA",
+          "quantity": 4
+        },
+        {
+          "slug": "studded-leather-armor",
+          "id": "ewQZ0VeL38v3qFnN",
+          "quantity": 3
+        },
+        {
+          "slug": "backpack",
+          "id": "3lgwjrFEsQVKzhh7",
+          "quantity": 6
+        },
+        {
+          "slug": "sack",
+          "id": "DujblC14ytJEZMaz",
+          "quantity": 12
+        },
+        {
+          "slug": "saddlebags",
+          "id": "mBziC8v2eOtTs0f5",
+          "quantity": 3
+        },
+        {
+          "slug": "oilskin-pouch",
+          "id": "Kd1WUWQnhagZGzjQ",
+          "quantity": 4
+        },
+        {
+          "slug": "waterskin",
+          "id": "VnPh324pKwd2ZB66",
+          "quantity": 8
+        },
+        {
+          "slug": "tack",
+          "id": "Bu2xT8NfB6xaeTJa",
+          "quantity": 3
+        },
+        {
+          "slug": "harness",
+          "id": "FphoSIj3t6iQj3ew",
+          "quantity": 4
+        },
+        {
+          "slug": "leash",
+          "id": "h8XkyI4OUitdxjMF",
+          "quantity": 6
+        },
+        {
+          "slug": "collar",
+          "id": "vQiH5HYTsSRIsdK5",
+          "quantity": 6
+        }
+      ],
+      "description": "Изделия из кожи работы Ларза Рованки. Изготовление на заказ требует времени.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "15",
+      "name": "Кузница «красный пёс»",
+      "kind": "service",
+      "anchor": "dB4wT6N26GLQ7Z6Q",
+      "stock": [],
+      "description": "Дас Корвут предлагает кузнечные работы. Его готовые изделия продаются в других городских лавках. Для ремонта или заказа обратитесь к ведущему.",
+      "custom": [],
+      "scrolls": [],
+      "service": true,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "16",
+      "name": "Лавка Шароката",
+      "kind": "alchemy",
+      "anchor": "p8wuBnNWR3aQMtog",
+      "stock": [
+        {
+          "slug": "alchemists-fire-lesser",
+          "id": "yd3kEK21YknZLlcT",
+          "quantity": 5
+        },
+        {
+          "slug": "acid-flask-lesser",
+          "id": "M1k5QQc1qQLxzyCK",
+          "quantity": 5
+        },
+        {
+          "slug": "bottled-lightning-lesser",
+          "id": "AFR01HVd7DcZvkpP",
+          "quantity": 5
+        },
+        {
+          "slug": "frost-vial-lesser",
+          "id": "EpxmUtLpCkE8R6KJ",
+          "quantity": 5
+        },
+        {
+          "slug": "glue-bomb-lesser",
+          "id": "T6Appwwl6nUl56Xj",
+          "quantity": 4
+        },
+        {
+          "slug": "smoke-ball-lesser",
+          "id": "MoBlVd36uD9xVvZC",
+          "quantity": 4
+        },
+        {
+          "slug": "matchstick",
+          "id": "ylUdMTsfOQGJ3MN3",
+          "quantity": 10
+        },
+        {
+          "slug": "antiplague-lesser",
+          "id": "UqinuuCWePTYGhVO",
+          "quantity": 4
+        },
+        {
+          "slug": "antidote-lesser",
+          "id": "ktjFOp3U0wQD9t0Z",
+          "quantity": 4
+        },
+        {
+          "slug": "elixir-of-life-minor",
+          "id": "hDLbR56Id2OtU318",
+          "quantity": 6
+        },
+        {
+          "slug": "healing-potion-minor",
+          "id": "2RuepCemJhrpKKao",
+          "quantity": 4
+        },
+        {
+          "slug": "healing-potion-lesser",
+          "id": "e0vSAQfxhHauiAoD",
+          "quantity": 2
+        },
+        {
+          "slug": "alchemists-fire-moderate",
+          "id": "gWr4q4HiyGhETA8H",
+          "quantity": 2
+        },
+        {
+          "slug": "acid-flask-moderate",
+          "id": "SgtqZxt26BdjUmEB",
+          "quantity": 2
+        },
+        {
+          "slug": "bottled-lightning-moderate",
+          "id": "97QyNEOAyYLdGaYc",
+          "quantity": 2
+        },
+        {
+          "slug": "frost-vial-moderate",
+          "id": "nVvH1ZcM7OwIVIs8",
+          "quantity": 2
+        },
+        {
+          "slug": "eagle-eye-elixir-lesser",
+          "id": "7Y2yOr4ltpP2tyuL",
+          "quantity": 3
+        },
+        {
+          "slug": "darkvision-elixir-lesser",
+          "id": "88pGCHV0uKMskTVO",
+          "quantity": 3
+        },
+        {
+          "slug": "darkvision-elixir-moderate",
+          "id": "Y8115p3cmQJBqk5d",
+          "quantity": 1
+        },
+        {
+          "slug": "mistform-elixir-lesser",
+          "id": "GyO89RBVjAKFxsFm",
+          "quantity": 1
+        },
+        {
+          "slug": "cats-eye-elixir",
+          "id": "bQPRKEpnLakJBAAh",
+          "quantity": 2
+        },
+        {
+          "slug": "cheetahs-elixir-lesser",
+          "id": "tyt6rFtv32MZ4DT9",
+          "quantity": 3
+        },
+        {
+          "slug": "leapers-elixir-lesser",
+          "id": "uG3xtNrs26scOVgW",
+          "quantity": 3
+        },
+        {
+          "slug": "comprehension-elixir-lesser",
+          "id": "3Klm2gPmzOw6ntVb",
+          "quantity": 2
+        },
+        {
+          "slug": "alchemists-toolkit",
+          "id": "4ftXXUCBHcf4b0MH",
+          "quantity": 3
+        },
+        {
+          "slug": "formula-book-blank",
+          "id": "qCEOZ6109Yo34tRx",
+          "quantity": 3
+        }
+      ],
+      "description": "Алхимия, зелья и припасы Аливера Подикера. Особые товары открываются ведущим после разговора с хозяином.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false,
+      "secretStock": [
+        "arsenic",
+        "black-adder-venom",
+        "giant-centipede-venom",
+        "graveroot",
+        "leadenleg",
+        "toad-tears"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Решения в склянках",
+      "kind": "alchemy",
+      "anchor": "zazcoyCbXvb61wbW",
+      "stock": [
+        {
+          "slug": "alchemists-fire-lesser",
+          "id": "yd3kEK21YknZLlcT",
+          "quantity": 5
+        },
+        {
+          "slug": "acid-flask-lesser",
+          "id": "M1k5QQc1qQLxzyCK",
+          "quantity": 5
+        },
+        {
+          "slug": "bottled-lightning-lesser",
+          "id": "AFR01HVd7DcZvkpP",
+          "quantity": 5
+        },
+        {
+          "slug": "frost-vial-lesser",
+          "id": "EpxmUtLpCkE8R6KJ",
+          "quantity": 5
+        },
+        {
+          "slug": "glue-bomb-lesser",
+          "id": "T6Appwwl6nUl56Xj",
+          "quantity": 4
+        },
+        {
+          "slug": "smoke-ball-lesser",
+          "id": "MoBlVd36uD9xVvZC",
+          "quantity": 4
+        },
+        {
+          "slug": "matchstick",
+          "id": "ylUdMTsfOQGJ3MN3",
+          "quantity": 10
+        },
+        {
+          "slug": "antiplague-lesser",
+          "id": "UqinuuCWePTYGhVO",
+          "quantity": 4
+        },
+        {
+          "slug": "antidote-lesser",
+          "id": "ktjFOp3U0wQD9t0Z",
+          "quantity": 4
+        },
+        {
+          "slug": "elixir-of-life-minor",
+          "id": "hDLbR56Id2OtU318",
+          "quantity": 6
+        },
+        {
+          "slug": "healing-potion-minor",
+          "id": "2RuepCemJhrpKKao",
+          "quantity": 4
+        },
+        {
+          "slug": "healing-potion-lesser",
+          "id": "e0vSAQfxhHauiAoD",
+          "quantity": 2
+        },
+        {
+          "slug": "alchemists-toolkit",
+          "id": "4ftXXUCBHcf4b0MH",
+          "quantity": 2
+        },
+        {
+          "slug": "formula-book-blank",
+          "id": "qCEOZ6109Yo34tRx",
+          "quantity": 3
+        },
+        {
+          "slug": "eagle-eye-elixir-lesser",
+          "id": "7Y2yOr4ltpP2tyuL",
+          "quantity": 2
+        },
+        {
+          "slug": "leapers-elixir-lesser",
+          "id": "uG3xtNrs26scOVgW",
+          "quantity": 2
+        }
+      ],
+      "description": "Алхимические припасы и зелья Ниска Тандера. Лавка известна небрежным качеством работы.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "21",
+      "name": "Сладости Сэндпойнта",
+      "kind": "food",
+      "anchor": "sqRY4KK7Op3zIT1m",
+      "stock": [
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 12
+        }
+      ],
+      "description": "Выпечка Альмы Авертин стоит 75% обычной цены. Здесь доступен запас дорожных рационов из выпечки; скидка уже учтена в окне покупки.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 0.75,
+      "hidden": false,
+      "renames": {
+        "rations": "Дорожная выпечка — недельный рацион"
+      }
+    },
+    {
+      "id": "22",
+      "name": "Любопытный гоблин",
+      "kind": "books",
+      "anchor": "kgHRTGXemntuydv5",
+      "stock": [
+        {
+          "slug": "illustrated-book",
+          "id": "G5WuYX1ghrZcJ1J1",
+          "quantity": 4
+        },
+        {
+          "slug": "spellbook-blank",
+          "id": "FOWF5f0tCaApv9RE",
+          "quantity": 4
+        },
+        {
+          "slug": "formula-book-blank",
+          "id": "qCEOZ6109Yo34tRx",
+          "quantity": 4
+        },
+        {
+          "slug": "basic-crafters-book",
+          "id": "w4Hd6nunVVqw3GWj",
+          "quantity": 5
+        },
+        {
+          "slug": "writing-set",
+          "id": "QJb8S927Yj81EgHH",
+          "quantity": 4
+        },
+        {
+          "slug": "writing-set-extra-ink-and-paper",
+          "id": "3yLu12TCwN8utY0u",
+          "quantity": 8
+        },
+        {
+          "slug": "reading-ring",
+          "id": "k7ExX8IPY7mSzYPF",
+          "quantity": 1
+        }
+      ],
+      "description": "Книги, местная история и оккультные свитки. Услуги Часка обсуждаются с ведущим.",
+      "custom": [
+        {
+          "name": "Сборник местных историй",
+          "price": {
+            "gp": 1
+          },
+          "description": "Книга о жизни на Забытом Побережье. Не даёт особых игровых бонусов.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        },
+        {
+          "name": "Приключенческий роман",
+          "price": {
+            "cp": 50
+          },
+          "description": "Небольшая книга для чтения в дороге.",
+          "base": "spellbook-blank",
+          "quantity": 3
+        }
+      ],
+      "scrolls": [
+        {
+          "slug": "soothe",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "soothe",
+          "rank": 2,
+          "quantity": 2
+        },
+        {
+          "slug": "illusory-object",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "fear",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "invisibility",
+          "rank": 2,
+          "quantity": 1
+        },
+        {
+          "slug": "dispel-magic",
+          "rank": 2,
+          "quantity": 1
+        }
+      ],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "24",
+      "name": "Гильдия плотников",
+      "kind": "service",
+      "anchor": "PUA0H9J3x8Q0gCEa",
+      "stock": [],
+      "description": "Столярные и плотницкие работы. Цену, срок и доставку заказа определяет ведущий.",
+      "custom": [],
+      "scrolls": [],
+      "service": true,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "26",
+      "name": "Универсальная лавка",
+      "kind": "general",
+      "anchor": "8hJ9ia39Z414j1T1",
+      "stock": [
+        {
+          "slug": "backpack",
+          "id": "3lgwjrFEsQVKzhh7",
+          "quantity": 8
+        },
+        {
+          "slug": "bedroll",
+          "id": "fagzYdmfYyMQ6J77",
+          "quantity": 8
+        },
+        {
+          "slug": "sack",
+          "id": "DujblC14ytJEZMaz",
+          "quantity": 15
+        },
+        {
+          "slug": "waterskin",
+          "id": "VnPh324pKwd2ZB66",
+          "quantity": 12
+        },
+        {
+          "slug": "rope",
+          "id": "fyYnQf1NAx9fWFaS",
+          "quantity": 10
+        },
+        {
+          "slug": "torch",
+          "id": "8Jdw4yAzWYylGePS",
+          "quantity": 20
+        },
+        {
+          "slug": "lantern-hooded",
+          "id": "dIRZ0LL7G31fJNYz",
+          "quantity": 4
+        },
+        {
+          "slug": "lantern-bulls-eye",
+          "id": "QrNvP9SgnK9DrerA",
+          "quantity": 3
+        },
+        {
+          "slug": "oil-1-pint",
+          "id": "Du05UxCyCM0ZWH8z",
+          "quantity": 12
+        },
+        {
+          "slug": "flint-and-steel",
+          "id": "UlIxxLm71UdRgCFE",
+          "quantity": 8
+        },
+        {
+          "slug": "grappling-hook",
+          "id": "6DCy7tEF1cxaIJMy",
+          "quantity": 4
+        },
+        {
+          "slug": "climbing-kit",
+          "id": "9UJbMaglf35GVzaZ",
+          "quantity": 3
+        },
+        {
+          "slug": "crowbar",
+          "id": "44F1mfJei4GY8f2X",
+          "quantity": 4
+        },
+        {
+          "slug": "hammer",
+          "id": "ML0GR2cIEdMn2hoD",
+          "quantity": 4
+        },
+        {
+          "slug": "piton",
+          "id": "oX39xqMLVB8kNrY0",
+          "quantity": 20
+        },
+        {
+          "slug": "tent-pup",
+          "id": "Wc9og4mTKZDH3xmz",
+          "quantity": 4
+        },
+        {
+          "slug": "tent-four-person",
+          "id": "JlClrm1WfJ45oWcS",
+          "quantity": 2
+        },
+        {
+          "slug": "cookware",
+          "id": "Yf7maiRDmmHAyF82",
+          "quantity": 4
+        },
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 20
+        },
+        {
+          "slug": "mug",
+          "id": "wRSS5vP8ltrThsoC",
+          "quantity": 12
+        },
+        {
+          "slug": "candle",
+          "id": "Ti4gWILk69LPxKuU",
+          "quantity": 20
+        },
+        {
+          "slug": "chalk",
+          "id": "xShIDyydOMkGvGNb",
+          "quantity": 10
+        },
+        {
+          "slug": "signal-whistle",
+          "id": "USHK6XQRwmq17xKh",
+          "quantity": 6
+        },
+        {
+          "slug": "fishing-tackle",
+          "id": "3tOyV4VZEZhwnAMO",
+          "quantity": 5
+        },
+        {
+          "slug": "net",
+          "id": "T8EopYZLT137CsdW",
+          "quantity": 4
+        },
+        {
+          "slug": "repair-toolkit",
+          "id": "vLGDUFrg4yGzpTQX",
+          "quantity": 3
+        },
+        {
+          "slug": "artisans-toolkit",
+          "id": "y34yjumCFakrbtdw",
+          "quantity": 2
+        },
+        {
+          "slug": "soap",
+          "id": "81aHsD27HFGnq1Nt",
+          "quantity": 10
+        }
+      ],
+      "description": "Хозяйственные товары, припасы и привозной алкоголь Вена Виндера.",
+      "custom": [
+        {
+          "name": "Бутылка импортного вина",
+          "price": {
+            "cp": 50
+          },
+          "description": "Привозное вино. Обычный алкоголь, без магических свойств.",
+          "base": "alcohol",
+          "quantity": 6
+        },
+        {
+          "name": "Бутылка выдержанного крепкого напитка",
+          "price": {
+            "gp": 5
+          },
+          "description": "Привозной крепкий алкоголь. Без магических свойств.",
+          "base": "alcohol",
+          "quantity": 2
+        }
+      ],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "29",
+      "name": "Зал бакалейщиков",
+      "kind": "food",
+      "anchor": "kwTaAfTTbhSah6nq",
+      "stock": [
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 20
+        },
+        {
+          "slug": "cookware",
+          "id": "Yf7maiRDmmHAyF82",
+          "quantity": 4
+        },
+        {
+          "slug": "sack",
+          "id": "DujblC14ytJEZMaz",
+          "quantity": 20
+        },
+        {
+          "slug": "merchants-scale",
+          "id": "o0ccn5HQAudGgNdU",
+          "quantity": 3
+        },
+        {
+          "slug": "wheelbarrow",
+          "id": "GpcZXdiJppItyWJg",
+          "quantity": 3
+        },
+        {
+          "slug": "tool-long",
+          "id": "wrpI5z7iWB8XvflQ",
+          "quantity": 4
+        },
+        {
+          "slug": "tool-short",
+          "id": "Zr4PwTEuBLE30kkn",
+          "quantity": 4
+        },
+        {
+          "slug": "rope",
+          "id": "fyYnQf1NAx9fWFaS",
+          "quantity": 5
+        }
+      ],
+      "description": "Продукты, напитки и сельскохозяйственные принадлежности.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "30",
+      "name": "Отличная одежда Верны",
+      "kind": "clothes",
+      "anchor": "2uXjibC3Oygg6FR0",
+      "stock": [
+        {
+          "slug": "clothing-ordinary",
+          "id": "ilbLQNy6TbBPW7sQ",
+          "quantity": 10
+        },
+        {
+          "slug": "clothing-fine",
+          "id": "jJZbdMHMdh8UL2j8",
+          "quantity": 5
+        },
+        {
+          "slug": "clothing-cold-weather",
+          "id": "SLQgdLk5K9JV4ACF",
+          "quantity": 6
+        },
+        {
+          "slug": "explorers-clothing",
+          "id": "dDIPA1WE9ESF67EB",
+          "quantity": 6
+        },
+        {
+          "slug": "padded-armor",
+          "id": "zBYEU9E7034ENCmh",
+          "quantity": 4
+        },
+        {
+          "slug": "leather-armor",
+          "id": "4tIVTg9wj56RrveA",
+          "quantity": 3
+        },
+        {
+          "slug": "disguise-kit",
+          "id": "Jvp0x2Sc82WVpExT",
+          "quantity": 3
+        },
+        {
+          "slug": "mask-ordinary",
+          "id": "2c5pF6q5XkjLn8MU",
+          "quantity": 5
+        },
+        {
+          "slug": "mask-fine",
+          "id": "OnyNpbR0dowRKg3I",
+          "quantity": 2
+        }
+      ],
+      "description": "Одежда и неметаллические лёгкие доспехи. Заказы по мерке обсуждаются с ведущим.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "31",
+      "name": "Повозки Уина",
+      "kind": "tools",
+      "anchor": "HDRli0VqFiFKHFKD",
+      "stock": [
+        {
+          "slug": "wheelbarrow",
+          "id": "GpcZXdiJppItyWJg",
+          "quantity": 3
+        },
+        {
+          "slug": "repair-toolkit",
+          "id": "vLGDUFrg4yGzpTQX",
+          "quantity": 3
+        },
+        {
+          "slug": "harness",
+          "id": "FphoSIj3t6iQj3ew",
+          "quantity": 4
+        },
+        {
+          "slug": "tack",
+          "id": "Bu2xT8NfB6xaeTJa",
+          "quantity": 3
+        },
+        {
+          "slug": "rope",
+          "id": "fyYnQf1NAx9fWFaS",
+          "quantity": 5
+        }
+      ],
+      "description": "Биливар Уин изготавливает повозки, ремонтирует колёса и организует доставку. Покупку повозки и курьерские услуги согласуйте с ведущим.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "34",
+      "name": "Рыбный рынок Вальдемара",
+      "kind": "food",
+      "anchor": "8reIsfydPQZkBn2r",
+      "stock": [
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 15
+        },
+        {
+          "slug": "fishing-tackle",
+          "id": "3tOyV4VZEZhwnAMO",
+          "quantity": 5
+        },
+        {
+          "slug": "fishing-tackle-professional",
+          "id": "ksorBjuXO0Bvdmhl",
+          "quantity": 1
+        },
+        {
+          "slug": "net",
+          "id": "T8EopYZLT137CsdW",
+          "quantity": 5
+        }
+      ],
+      "description": "Рыба и морепродукты местного улова. На витрине также есть запасы для дороги и рыбацкие принадлежности.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false,
+      "renames": {
+        "rations": "Сушёная рыба — недельный рацион"
+      }
+    },
+    {
+      "id": "35",
+      "name": "Рынок Сэндпойнта",
+      "kind": "general",
+      "anchor": "3v3aVZdNSdp5kmpL",
+      "stock": [
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 15
+        },
+        {
+          "slug": "sack",
+          "id": "DujblC14ytJEZMaz",
+          "quantity": 10
+        },
+        {
+          "slug": "rope",
+          "id": "fyYnQf1NAx9fWFaS",
+          "quantity": 6
+        },
+        {
+          "slug": "waterskin",
+          "id": "VnPh324pKwd2ZB66",
+          "quantity": 6
+        },
+        {
+          "slug": "cookware",
+          "id": "Yf7maiRDmmHAyF82",
+          "quantity": 3
+        },
+        {
+          "slug": "clothing-ordinary",
+          "id": "ilbLQNy6TbBPW7sQ",
+          "quantity": 6
+        },
+        {
+          "slug": "artisans-toolkit",
+          "id": "y34yjumCFakrbtdw",
+          "quantity": 2
+        },
+        {
+          "slug": "basic-crafters-book",
+          "id": "w4Hd6nunVVqw3GWj",
+          "quantity": 4
+        },
+        {
+          "slug": "toy-carriage",
+          "id": "85FCQF18RslpIhPs",
+          "quantity": 3
+        },
+        {
+          "slug": "ball",
+          "id": "A1CDXAP4bNGgntE7",
+          "quantity": 5
+        },
+        {
+          "slug": "playing-cards",
+          "id": "EsqFTJXcmzfngRgL",
+          "quantity": 4
+        }
+      ],
+      "description": "Рыночные дни: Лунодень — местные фермеры; Огнедень — приезжие купцы. Открытие торгов в нужный день управляется ведущим. Привозные предметы выше 4-го уровня добавляются отдельно.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "36",
+      "name": "Мясной рынок Сэндпойнта",
+      "kind": "food",
+      "anchor": "7bHpswC8Vjh364C1",
+      "stock": [
+        {
+          "slug": "rations",
+          "id": "L9ZV076913otGtiB",
+          "quantity": 15
+        }
+      ],
+      "description": "Мясо Чода Бевука и припасы в дорогу.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false,
+      "renames": {
+        "rations": "Вяленое мясо — недельный рацион"
+      }
+    },
+    {
+      "id": "38",
+      "name": "Конюшни «тыква гоблина»",
+      "kind": "service",
+      "anchor": "8YptfB7AMFx55Gym",
+      "stock": [],
+      "description": "Содержание лошадей и уход за ними. Условия и оплату определяет ведущий.",
+      "custom": [],
+      "scrolls": [],
+      "service": true,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "39",
+      "name": "Пивоварня «два рыцаря»",
+      "kind": "drink",
+      "anchor": "eMAcrUiquc69PR4r",
+      "stock": [
+        {
+          "slug": "alcohol",
+          "id": "UMAXLDpI6YLSfYX1",
+          "quantity": 30
+        },
+        {
+          "slug": "mug",
+          "id": "wRSS5vP8ltrThsoC",
+          "quantity": 12
+        }
+      ],
+      "description": "Пиво, эль и сезонные напитки местной пивоварни. Цена стандартной порции соответствует обычному алкоголю из правил.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false,
+      "renames": {
+        "alcohol": "Пиво «Старый Мёрдермо» — порция"
+      }
+    },
+    {
+      "id": "40",
+      "name": "Торговая лига",
+      "kind": "service",
+      "anchor": "7FQ8YafsOLGFRK4k",
+      "stock": [],
+      "description": "Караваны, гонцы, грузовые перевозки и недвижимость. Эти услуги оформляются через ведущего.",
+      "custom": [],
+      "scrolls": [],
+      "service": true,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "41",
+      "name": "Бутик Сэндпойнта",
+      "kind": "general",
+      "anchor": "Ol7eQNxmSSGNYeqM",
+      "stock": [
+        {
+          "slug": "clothing-fine",
+          "id": "jJZbdMHMdh8UL2j8",
+          "quantity": 3
+        },
+        {
+          "slug": "explorers-clothing",
+          "id": "dDIPA1WE9ESF67EB",
+          "quantity": 3
+        },
+        {
+          "slug": "disguise-kit",
+          "id": "Jvp0x2Sc82WVpExT",
+          "quantity": 2
+        },
+        {
+          "slug": "mask-fine",
+          "id": "OnyNpbR0dowRKg3I",
+          "quantity": 2
+        },
+        {
+          "slug": "illustrated-book",
+          "id": "G5WuYX1ghrZcJ1J1",
+          "quantity": 2
+        },
+        {
+          "slug": "musical-instrument-handheld",
+          "id": "MPv5Yx4w7scZGj2Y",
+          "quantity": 2
+        },
+        {
+          "slug": "spyglass",
+          "id": "UtRH6jt3iNFCgLLG",
+          "quantity": 1
+        },
+        {
+          "slug": "mirror",
+          "id": "6cyw0yK91cNsbvSK",
+          "quantity": 3
+        },
+        {
+          "slug": "hourglass",
+          "id": "WAsQ6WuMYUB77Uh0",
+          "quantity": 2
+        },
+        {
+          "slug": "dagger",
+          "id": "rQWaJhI5Bko5x14Z",
+          "quantity": 3
+        },
+        {
+          "slug": "rapier",
+          "id": "tH5GirEy7YB3ZgCk",
+          "quantity": 2
+        },
+        {
+          "slug": "shortsword",
+          "id": "7tKkkF8eZ4iCLJtp",
+          "quantity": 2
+        },
+        {
+          "slug": "artisans-toolkit",
+          "id": "y34yjumCFakrbtdw",
+          "quantity": 2
+        },
+        {
+          "slug": "repair-toolkit",
+          "id": "vLGDUFrg4yGzpTQX",
+          "quantity": 2
+        },
+        {
+          "slug": "toy-carriage",
+          "id": "85FCQF18RslpIhPs",
+          "quantity": 2
+        },
+        {
+          "slug": "ring-of-discretion",
+          "id": "FABVnBeYtGXshlwm",
+          "quantity": 1
+        }
+      ],
+      "description": "Снаряжение, одежда, инструменты, оружие и небольшие произведения искусства. Часть вещей поступает на комиссию.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "44",
+      "name": "Пернатый змей",
+      "kind": "magic",
+      "anchor": "TFKUahmCMwcIyYkf",
+      "stock": [
+        {
+          "slug": "spacious-pouch-type-i",
+          "id": "jaEEvuQ32GjAa8jy",
+          "quantity": 1
+        },
+        {
+          "slug": "hand-of-the-mage",
+          "id": "r1hgg2rweqGL1LBl",
+          "quantity": 1
+        },
+        {
+          "slug": "pendant-of-the-occult",
+          "id": "zPhqmCvWyHO8i9ws",
+          "quantity": 1
+        },
+        {
+          "slug": "ventriloquists-ring",
+          "id": "1r6StS0irdvi5JHY",
+          "quantity": 1
+        },
+        {
+          "slug": "doubling-rings",
+          "id": "DwMXEqy7Ws8NYQQh",
+          "quantity": 1
+        },
+        {
+          "slug": "ring-of-sigils",
+          "id": "yzc8Sll1YMWq8PpR",
+          "quantity": 1
+        },
+        {
+          "slug": "sleeves-of-storage",
+          "id": "1pglC9PQx6yOgcKL",
+          "quantity": 1
+        },
+        {
+          "slug": "persona-mask",
+          "id": "MKupH1T018JubYJW",
+          "quantity": 1
+        },
+        {
+          "slug": "cantrip-deck-5-pack",
+          "id": "tLa4bewBhyqzi6Ow",
+          "quantity": 3
+        },
+        {
+          "slug": "healers-gloves",
+          "id": "o1zKhvYUUc1hE2AE",
+          "quantity": 1
+        },
+        {
+          "slug": "lifting-belt",
+          "id": "g2oaOGSpttfH1q6W",
+          "quantity": 1
+        },
+        {
+          "slug": "belt-of-good-health",
+          "id": "AhvjU4QbinWPM9t3",
+          "quantity": 1
+        },
+        {
+          "slug": "toy-carriage-windup",
+          "id": "SHhSOqzt89GRk9kL",
+          "quantity": 2
+        },
+        {
+          "slug": "harrow-deck-simple",
+          "id": "C1j0Zs26TPVjplbs",
+          "quantity": 3
+        },
+        {
+          "slug": "playing-cards",
+          "id": "EsqFTJXcmzfngRgL",
+          "quantity": 3
+        },
+        {
+          "slug": "mirror",
+          "id": "6cyw0yK91cNsbvSK",
+          "quantity": 2
+        }
+      ],
+      "description": "Магические предметы, диковинки и заводные игрушки Ворвашали Вуна. Отдельные витринные редкости и специальные заказы обсуждаются с ведущим.",
+      "custom": [],
+      "scrolls": [
+        {
+          "slug": "mending",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "alarm",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "mystic-armor",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "runic-weapon",
+          "rank": 1,
+          "quantity": 2
+        },
+        {
+          "slug": "invisibility",
+          "rank": 2,
+          "quantity": 1
+        }
+      ],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "45",
+      "name": "Ханна",
+      "kind": "medical",
+      "anchor": "hfbOVJxQsDGrx23h",
+      "stock": [
+        {
+          "slug": "healers-toolkit",
+          "id": "s1vB3HdXjMigYAnY",
+          "quantity": 4
+        },
+        {
+          "slug": "healers-toolkit-expanded",
+          "id": "SGkOHFyBbzWdBk8D",
+          "quantity": 1
+        },
+        {
+          "slug": "splint",
+          "id": "02luiB9xtE1yaKzo",
+          "quantity": 6
+        },
+        {
+          "slug": "soap",
+          "id": "81aHsD27HFGnq1Nt",
+          "quantity": 10
+        },
+        {
+          "slug": "basic-face-mask",
+          "id": "IGgK7NAdfyAPm8V0",
+          "quantity": 6
+        },
+        {
+          "slug": "crutch",
+          "id": "h4fhKJmmx232FGd2",
+          "quantity": 3
+        },
+        {
+          "slug": "antiplague-lesser",
+          "id": "UqinuuCWePTYGhVO",
+          "quantity": 4
+        },
+        {
+          "slug": "antidote-lesser",
+          "id": "ktjFOp3U0wQD9t0Z",
+          "quantity": 4
+        }
+      ],
+      "description": "Медицинские принадлежности и помощь Ханны Велерин. Лечение и сотворение заклинаний согласуются с ведущим.",
+      "custom": [],
+      "scrolls": [],
+      "service": false,
+      "discount": 1,
+      "hidden": false
+    },
+    {
+      "id": "46",
+      "name": "Верфь Сэндпойнта",
+      "kind": "service",
+      "anchor": "wYJOlwfhrkOf9aOh",
+      "stock": [],
+      "description": "Кораблестроение, перевозки и покупка судов. Маршрут, цену и сроки определяет ведущий.",
+      "custom": [],
+      "scrolls": [],
+      "service": true,
+      "discount": 1,
+      "hidden": false
+    }
+  ]
+}
