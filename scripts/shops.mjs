@@ -1,6 +1,6 @@
 const ID = 'pf2e-sandpoint-shops';
 const ROOT = `modules/${ID}`;
-const VERSION = '0.1.3';
+const VERSION = '0.1.4';
 const COPY = value => foundry.utils.deepClone(value);
 const escape = value => foundry.utils.escapeHTML(String(value));
 
@@ -95,11 +95,85 @@ async function prepareStock(shop, equipment, spellIndex, spellPack) {
   return rows;
 }
 
-function description(shop) {
-  return `<h2>${shop.id}. ${escape(shop.name)}</h2><p>${escape(shop.description)}</p>`
-    + (shop.service ? '<p>Здесь оказывают услуги. Для оформления заказа обратитесь к ведущему.</p>'
-      : '<p>Выберите своего персонажа в окне торговли. Покупка автоматически переносит вещь, списывает деньги и уменьшает остаток товара.</p>')
-    + '<p>Сэндпойнт — поселение 4-го уровня. Ассортимент подготовлен для игры по описанию города; точное количество вещей определено ведущим.</p>';
+async function prepareDescriptions(shops) {
+  const guide = game.journal.get('pf2ap20016player')
+    ?? game.journal.find(journal => journal.pages.has('16exploringthe00'));
+  const page = guide?.pages.get('16exploringthe00');
+  if (!page) throw new Error('В мире не найдено руководство игрока. Импортируйте его из Seven Dooms for Sandpoint.');
+  const document = new DOMParser().parseFromString(page.text.content, 'text/html');
+  const descriptions = new Map();
+  for (const shop of shops) {
+    const section = document.querySelector(`section.action[data-scroll="${shop.id.padStart(2, '0')}"]`);
+    const paragraphs = section ? [...section.querySelectorAll(':scope > p')] : [];
+    if (paragraphs.length < 3) throw new Error(`В руководстве игрока не найдено описание: ${shop.name}`);
+    let portrait = section.querySelector('img');
+    // Портрет настоятеля находится в разделе о фракциях руководства игрока.
+    if (shop.id === '1') {
+      const factions = guide.pages.get('16sandpointfac00');
+      const images = new DOMParser().parseFromString(factions?.text.content ?? '', 'text/html');
+      portrait = images.querySelector('img[src$="PZO90200 ABSTALAR ZANTUS.webp"]');
+    }
+    const seller = paragraphs.slice(2).flatMap(p => [...p.querySelectorAll('strong')])[0]?.textContent.trim() ?? '';
+    const source = portrait?.getAttribute('src');
+    const image = source?.startsWith('modules/pf2e-ap200-seven-dooms-for-sandpoint/assets/art/')
+      ? `<figure style="margin:0 0 12px;text-align:center"><img src="${escape(source)}" alt="${escape(seller)}" style="width:160px;max-width:100%;height:auto;border:0">${seller ? `<figcaption><strong>${escape(seller)}</strong></figcaption>` : ''}</figure>`
+      : '';
+    descriptions.set(shop.id, image + paragraphs.map(p => p.outerHTML).join(''));
+  }
+  return descriptions;
+}
+
+function existingShops(shops, scene) {
+  return new Map(shops.flatMap(shop => {
+    const linked = scene.tokens.find(t => t.flags.world?.sandpointShop?.id === shop.id
+      && !t.flags.world.sandpointShop.duplicateHidden && game.actors.has(t.actorId));
+    const actor = linked ? game.actors.get(linked.actorId) : game.actors.find(a =>
+      a.flags.world?.sandpointShop?.id === shop.id && !a.flags.world.sandpointShop.archived);
+    return actor ? [[shop.id, actor]] : [];
+  }));
+}
+
+async function applyDescriptions(actors, descriptions) {
+  const actorUpdates = [];
+  const tokenUpdates = new Map();
+  const before = {actors: [], scenes: []};
+  for (const [id, actor] of actors) {
+    const html = descriptions.get(id);
+    if (actor.system.details.description !== html || actor.flags['item-piles']?.data?.description !== html) {
+      before.actors.push({_id: actor.id, 'system.details.description': actor.system.details.description,
+        'flags.item-piles.data.description': actor.flags['item-piles']?.data?.description ?? ''});
+      actorUpdates.push({_id: actor.id, 'system.details.description': html,
+        'flags.item-piles.data.description': html, 'flags.world.sandpointShop.descriptionVersion': VERSION});
+    }
+    for (const scene of game.scenes) {
+      for (const token of scene.tokens.filter(t => t.actorId === actor.id && t.flags.world?.sandpointShop?.id === id)) {
+        if (token.flags['item-piles']?.data?.description === html) continue;
+        if (!tokenUpdates.has(scene.id)) tokenUpdates.set(scene.id, []);
+        tokenUpdates.get(scene.id).push({_id: token.id, 'flags.item-piles.data.description': html});
+      }
+    }
+  }
+  for (const [id, updates] of tokenUpdates) before.scenes.push({id, tokens: updates.map(update => ({
+    _id: update._id, 'flags.item-piles.data.description': game.scenes.get(id).tokens.get(update._id).flags['item-piles']?.data?.description ?? ''
+  }))});
+  if (actorUpdates.length || tokenUpdates.size) await saveReport(`descriptions-before-${Date.now()}.json`, before);
+  if (actorUpdates.length) await Actor.updateDocuments(actorUpdates);
+  for (const [id, updates] of tokenUpdates) await game.scenes.get(id).updateEmbeddedDocuments('Token', updates);
+  return {shops: actors.size, portraits: [...actors.keys()].filter(id => descriptions.get(id).includes('<figure')).length};
+}
+
+export async function updateDescriptions(scene = canvas.scene) {
+  if (!game.user.isGM) throw new Error('Обновлять описания может ведущий.');
+  if (!scene) throw new Error('Откройте городскую карту Сэндпойнта.');
+  const response = await fetch(`${ROOT}/data/shops.json`);
+  if (!response.ok) throw new Error('Не удалось прочитать список магазинов.');
+  const {shops} = await response.json();
+  const descriptions = await prepareDescriptions(shops);
+  const actors = existingShops(shops, scene);
+  if (actors.size !== shops.length) throw new Error('Сначала разместите все магазины на городской карте.');
+  const report = await applyDescriptions(actors, descriptions);
+  ui.notifications.info(`Обновлены описания ${report.shops} торговых точек. Портретов из руководства игрока: ${report.portraits}.`);
+  return report;
 }
 
 function tokenData(shop, scene, anchor) {
@@ -172,12 +246,8 @@ async function performInstall(scene) {
   const spellPack = game.packs.get('pf2e.spells-srd');
   await equipment.getIndex({fields: ['system.slug']});
   const spellIndex = await spellPack.getIndex({fields: ['system.slug']});
-  const existing = new Map();
-  for (const shop of shops) {
-    const linked = scene.tokens.find(t => t.flags.world?.sandpointShop?.id === shop.id && game.actors.has(t.actorId));
-    const actor = linked ? game.actors.get(linked.actorId) : game.actors.find(a => a.flags.world?.sandpointShop?.id === shop.id && !a.flags.world.sandpointShop.archived);
-    if (actor) existing.set(shop.id, actor);
-  }
+  const existing = existingShops(shops, scene);
+  const descriptions = await prepareDescriptions(shops);
   const anchors = new Map();
   const prepared = new Map();
   ui.notifications.info('Подготавливаю магазины Сэндпойнта…');
@@ -199,7 +269,7 @@ async function performInstall(scene) {
     const token = tokenData(shop, scene, anchors.get(shop.id));
     let actor = existing.get(shop.id);
     if (!actor) {
-      const html = description(shop);
+      const html = descriptions.get(shop.id);
       await game.itempiles.API.createItemPile({
         sceneId: scene.id, createActor: true,
         folders: ['Магазины Сэндпойнта'],
@@ -230,6 +300,7 @@ async function performInstall(scene) {
       await scene.createEmbeddedDocuments('Token', [document.toObject()]);
     }
   }
+  await applyDescriptions(existing, descriptions);
   await scene.setFlag('world', 'sandpointShops', {version: VERSION, shops: shops.length});
   await scene.update({navigation: true});
   const report = shops.map(s => {
@@ -244,7 +315,7 @@ async function performInstall(scene) {
 Hooks.once('ready', async () => {
     const module = game.modules.get(ID);
     if (!module?.active) return;
-    module.api = {install};
+    module.api = {install, updateDescriptions};
     if (!game.user.isGM || game.macros.some(m => m.getFlag(ID, 'installer'))) return;
     await Macro.create({name:'Магазины Сэндпойнта — разместить на карте',type:'script',img:`${ROOT}/icons/shop-26.svg`,
       command:`await (await import('/${ROOT}/scripts/shops.mjs')).install();`,flags:{[ID]:{installer:true}}});
