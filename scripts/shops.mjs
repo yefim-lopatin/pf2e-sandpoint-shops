@@ -1,5 +1,6 @@
 const ID = 'pf2e-sandpoint-shops';
 const ROOT = `modules/${ID}`;
+const VERSION = '0.1.3';
 const COPY = value => foundry.utils.deepClone(value);
 const escape = value => foundry.utils.escapeHTML(String(value));
 
@@ -17,7 +18,7 @@ async function saveReport(name, data) {
 
 function stockCopy(document, quantity = 1) {
   const data = document.toObject();
-  delete data._id;
+  data._id = foundry.utils.randomID();
   data.system.quantity = quantity;
   data.system.containerId = null;
   data.system.equipped = {carryType: 'worn', invested: false};
@@ -38,6 +39,7 @@ async function prepareStock(shop, equipment, spellIndex, spellPack) {
   for (const row of shop.stock) {
     const source = await get(row.slug);
     const data = stockCopy(source, row.quantity);
+    data.flags[ID].stockKey = `item:${row.slug}`;
     if (shop.renames?.[row.slug]) data.name = shop.renames[row.slug];
     if (shop.id === '17' && data.system.traits.value.includes('alchemical')) {
       data.flags[ID].faultyShop = true;
@@ -47,11 +49,13 @@ async function prepareStock(shop, equipment, spellIndex, spellPack) {
   }
   for (const slug of shop.secretStock ?? []) {
     const data = stockCopy(await get(slug), 2);
+    data.flags[ID].stockKey = `item:${slug}`;
     data.flags['item-piles'] = {item: {hidden: true, notForSale: true}};
     rows.push(data);
   }
   for (const custom of shop.custom) {
     const data = stockCopy(await get(custom.base), custom.quantity);
+    data.flags[ID].stockKey = `custom:${custom.name}`;
     data.name = custom.name;
     data.system.slug = null;
     data.system.price = {value: custom.price, per: 1};
@@ -63,6 +67,7 @@ async function prepareStock(shop, equipment, spellIndex, spellPack) {
   for (const slug of shop.enchantedWeapons ?? []) {
     const source = await get(slug);
     const data = stockCopy(source);
+    data.flags[ID].stockKey = `weapon:${slug}:potency:1`;
     data.name = `${source.name} +1`;
     data.system.runes.potency = 1;
     data.system.level.value = 2;
@@ -77,6 +82,7 @@ async function prepareStock(shop, equipment, spellIndex, spellPack) {
     if (spell.system.traits.rarity !== 'common' || spell.baseRank > scroll.rank) throw new Error(`Неверный свиток: ${spell.name}`);
     const base = await get(`scroll-of-${scroll.rank === 1 ? '1st' : '2nd'}-rank-spell`);
     const data = stockCopy(base, scroll.quantity);
+    data.flags[ID].stockKey = `scroll:${scroll.slug}:${scroll.rank}`;
     data.name = `Свиток: ${spell.name} (${scroll.rank}-й ранг)`;
     data.system.spell = spell.toObject();
     data.system.spell._id = foundry.utils.randomID();
@@ -109,7 +115,53 @@ function tokenData(shop, scene, anchor) {
   };
 }
 
+function sameStockItem(item, row) {
+  if (item.flags[ID]?.stockKey) return item.flags[ID].stockKey === row.flags[ID].stockKey;
+  const sameSource = item.flags[ID]?.source === row.flags[ID].source;
+  if (!sameSource) return false;
+  if (row.system.spell) {
+    return item.system.spell?.system.slug === row.system.spell.system.slug
+      && item.system.spell?.system.location?.heightenedLevel === row.system.spell.system.location.heightenedLevel;
+  }
+  if (row.flags[ID].stockKey.startsWith('weapon:')) return item.system.runes?.potency === row.system.runes.potency;
+  if (row.flags[ID].stockKey.startsWith('custom:')) return item.name === row.name;
+  return true;
+}
+
+async function synchronizeStock(actor, rows) {
+  const installedKeys = new Set(actor.flags.world?.sandpointShop?.catalogKeys ?? []);
+  const updates = [];
+  const missing = [];
+  for (const row of rows) {
+    const key = row.flags[ID].stockKey;
+    const existing = actor.items.find(item => sameStockItem(item, row));
+    if (existing) {
+      if (existing.flags[ID]?.stockKey !== key) updates.push({_id: existing.id, [`flags.${ID}.stockKey`]: key});
+    } else if (!installedKeys.has(key)) missing.push(row);
+    installedKeys.add(key);
+  }
+  if (updates.length) await actor.updateEmbeddedDocuments('Item', updates);
+  if (missing.length) {
+    const created = await actor.createEmbeddedDocuments('Item', missing);
+    if (created.length !== missing.length) throw new Error(`Не все товары добавлены в магазин «${actor.name}». Повторите размещение.`);
+  }
+  await actor.update({
+    'flags.world.sandpointShop.stockInitialized': true,
+    'flags.world.sandpointShop.catalogKeys': [...installedKeys],
+    'flags.world.sandpointShop.version': VERSION
+  });
+}
+
 export async function install(scene = canvas.scene) {
+  const module = game.modules.get(ID);
+  module.api ??= {};
+  if (module.api.installation) return ui.notifications.warn('Размещение магазинов уже выполняется. Дождитесь завершения.');
+  module.api.installation = performInstall(scene);
+  try { return await module.api.installation; }
+  finally { delete module.api.installation; }
+}
+
+async function performInstall(scene) {
   if (!game.user.isGM) return ui.notifications.warn('Размещать магазины может ведущий.');
   if (!scene || !/sandpoint|с[эа]ндп[оой]/i.test(scene.name)) throw new Error('Откройте городскую карту Сэндпойнта.');
   if (!game.modules.get('item-piles')?.active || !game.modules.get('itempiles-pf2e')?.active || !game.itempiles?.API) throw new Error('Включите Item Piles и Item Piles: PF2e.');
@@ -120,7 +172,12 @@ export async function install(scene = canvas.scene) {
   const spellPack = game.packs.get('pf2e.spells-srd');
   await equipment.getIndex({fields: ['system.slug']});
   const spellIndex = await spellPack.getIndex({fields: ['system.slug']});
-  const existing = new Map(game.actors.filter(a => a.flags.world?.sandpointShop?.id).map(a => [a.flags.world?.sandpointShop?.id, a]));
+  const existing = new Map();
+  for (const shop of shops) {
+    const linked = scene.tokens.find(t => t.flags.world?.sandpointShop?.id === shop.id && game.actors.has(t.actorId));
+    const actor = linked ? game.actors.get(linked.actorId) : game.actors.find(a => a.flags.world?.sandpointShop?.id === shop.id && !a.flags.world.sandpointShop.archived);
+    if (actor) existing.set(shop.id, actor);
+  }
   const anchors = new Map();
   const prepared = new Map();
   ui.notifications.info('Подготавливаю магазины Сэндпойнта…');
@@ -129,9 +186,15 @@ export async function install(scene = canvas.scene) {
     const anchor = scene.notes.get(shop.anchor) ?? scene.notes.find(n => n.text.toLowerCase() === shop.name.toLowerCase());
     if (!anchor) throw new Error(`На карте не найдена отметка: ${shop.name}`);
     anchors.set(shop.id, anchor);
-    if (!existing.get(shop.id)?.flags.world?.sandpointShop?.stockInitialized) prepared.set(shop.id, await prepareStock(shop, equipment, spellIndex, spellPack));
+    prepared.set(shop.id, await prepareStock(shop, equipment, spellIndex, spellPack));
   }
   if (!scene.getFlag('world', 'sandpointShops')) await saveReport(`scene-before-${scene.id}.json`, scene.toObject());
+  if (shops.some(s => !existing.get(s.id)?.flags.world?.sandpointShop?.catalogKeys)) {
+    await saveReport(`stock-before-${Date.now()}.json`, {
+      scene: scene.toObject(),
+      actors: game.actors.filter(a => a.flags.world?.sandpointShop).map(a => a.toObject())
+    });
+  }
   for (const shop of shops) {
     const token = tokenData(shop, scene, anchors.get(shop.id));
     let actor = existing.get(shop.id);
@@ -144,7 +207,7 @@ export async function install(scene = canvas.scene) {
           name: shop.name, type: 'loot', img: token.texture.src,
           system: {lootSheetType: 'Merchant', details: {description: html}},
           ownership: {default: CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED},
-          prototypeToken: COPY(token), flags: {world: {sandpointShop: {id: shop.id, version: '0.1.2'}}}
+          prototypeToken: COPY(token), flags: {world: {sandpointShop: {id: shop.id, version: VERSION}}}
         },
         tokenOverrides: token,
         itemPileFlags: {
@@ -154,22 +217,20 @@ export async function install(scene = canvas.scene) {
           displayQuantity: 'yes', hideItemsWithZeroCost: true, keepZeroQuantity: true,
           merchantImage: token.texture.src, openTimes: {enabled: false, status: 'open'}
         },
-        items: prepared.get(shop.id)
+        // Предметы добавляются штатным способом PF2e после создания торговца.
+        items: false
       });
       actor = game.actors.find(a => a.flags.world?.sandpointShop?.id === shop.id);
       if (!actor) throw new Error(`Не удалось создать магазин: ${shop.name}`);
       existing.set(shop.id, actor);
     }
-    if (!actor.flags.world?.sandpointShop?.stockInitialized) {
-      if (!actor.items.size && prepared.get(shop.id)?.length) await actor.createEmbeddedDocuments('Item', prepared.get(shop.id));
-      await actor.update({'flags.world.sandpointShop.stockInitialized': true});
-    }
+    await synchronizeStock(actor, prepared.get(shop.id));
     if (!scene.tokens.some(t => t.flags.world?.sandpointShop?.id === shop.id)) {
       const document = await actor.getTokenDocument(token);
       await scene.createEmbeddedDocuments('Token', [document.toObject()]);
     }
   }
-  await scene.setFlag('world', 'sandpointShops', {version: '0.1.2', shops: shops.length});
+  await scene.setFlag('world', 'sandpointShops', {version: VERSION, shops: shops.length});
   await scene.update({navigation: true});
   const report = shops.map(s => {
     const a = existing.get(s.id);

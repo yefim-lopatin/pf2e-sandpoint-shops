@@ -2,5 +2,6 @@
 context.json
 *-report.json
 scene-before-*.json
+stock-before-*.json
 purchase-*.json
 *.zip
